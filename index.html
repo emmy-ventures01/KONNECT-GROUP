@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KONNECT Cruise</title>
+
+<!-- Stylish Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background-color: #0a1f44;
+        color: white;
+        text-align: center;
+    }
+
+    .container {
+        max-width: 500px;
+        margin: 60px auto;
+        padding: 20px;
+    }
+
+    .logo {
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 15px;
+    }
+
+    h1 {
+        margin: 10px 0 5px;
+        font-size: 30px;
+        font-weight: 700;
+    }
+
+    .tagline {
+        font-size: 17px;
+        color: #cbd5e1;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .description {
+        font-size: 15px;
+        line-height: 1.6;
+        margin-bottom: 25px;
+        color: #e2e8f0;
+    }
+
+    .rules {
+        font-size: 14px;
+        line-height: 1.5;
+        color: #cbd5e1;
+        margin-bottom: 30px;
+        text-align: left;
+        background: rgba(255,255,255,0.05);
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .btn {
+        display: block;
+        background-color: #1e40af;
+        color: white;
+        text-decoration: none;
+        padding: 14px;
+        margin: 10px 0;
+        border-radius: 8px;
+        font-weight: 600;
+    }
+
+    .btn:hover {
+        background-color: #1d4ed8;
+    }
+
+    .creator-tag {
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .creator-tag img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid white;
+    }
+
+    .creator-tag span {
+        display: block;
+        font-size: 11px;
+        margin-top: 3px;
+        color: #e2e8f0;
+    }
+
+    .viewer {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.95);
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+    }
+
+    .viewer img {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 10px;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- Creator icon -->
+<div class="creator-tag" onclick="openViewer()">
+    <img src="https://i.ibb.co/rKC0ZLZt/temp.jpg" alt="Creator">
+    <span>Creator</span>
+</div>
+
+<!-- Fullscreen viewer -->
+<div class="viewer" id="viewer" onclick="closeViewer()">
+    <img src="https://i.ibb.co/rKC0ZLZt/temp.jpg" alt="Creator Large">
+</div>
+
+<div class="container">
+    <img src="https://i.ibb.co/B21MLJWv/temp.jpg" alt="Group Logo" class="logo">
+
+    <h1>KONNECT 😎😁</h1>
+    <div class="tagline">Cruise Arena</div>
+
+    <p class="description">
+        Welcome to KONNECT Cruise — a space for real vibes, fun games, and active conversations.
+        No dull energy, no drama, just connection, laughter, and weekly activities.
+    </p>
+
+    <div class="rules">
+        <strong>Group Rules:</strong><br>
+        • Respect everyone<br>
+        • No links or spam<br>
+        • No illegal or adult content<br>
+        • Stay active and positive<br>
+        • Admin decisions are final
+    </div>
+
+    <a href="https://chat.whatsapp.com/B7BJxzEUbqZ8OR4ESo92o7" class="btn">Join WhatsApp Group</a>
+    <a href="https://whatsapp.com/channel/0029Vb7QPKn7z4knKEHzjI1B" class="btn">Follow Channel</a>
+    <a href="admin.html" class="btn">Request for Admin</a>
+</div>
+
+<script>
+function openViewer() {
+    document.getElementById("viewer").style.display = "flex";
+}
+
+function closeViewer() {
+    document.getElementById("viewer").style.display = "none";
+}
+</script>
+
+</body>
+</html>
