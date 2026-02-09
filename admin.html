@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Request - KONNECT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background-color: #0a1f44;
+        color: white;
+        text-align: center;
+    }
+
+    /* Top-left arrow */
+    .home-arrow {
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        font-size: 24px;
+        text-decoration: none;
+        color: white;
+        background: rgba(255,255,255,0.1);
+        padding: 8px 12px;
+        border-radius: 8px;
+        z-index: 10;
+    }
+
+    .home-arrow:hover {
+        background: rgba(255,255,255,0.2);
+    }
+
+    .container {
+        max-width: 500px;
+        margin: 70px auto;
+        padding: 20px;
+    }
+
+    h1 {
+        margin-bottom: 10px;
+    }
+
+    p {
+        color: #cbd5e1;
+        font-size: 14px;
+        margin-bottom: 25px;
+    }
+
+    form {
+        background: rgba(255,255,255,0.05);
+        padding: 20px;
+        border-radius: 10px;
+        text-align: left;
+    }
+
+    label {
+        font-size: 13px;
+        display: block;
+        margin-bottom: 5px;
+        margin-top: 15px;
+        color: #e2e8f0;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 12px;
+        border-radius: 6px;
+        border: none;
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    textarea {
+        resize: none;
+        height: 90px;
+    }
+
+    .checkbox {
+        margin-top: 15px;
+        font-size: 13px;
+    }
+
+    .checkbox input {
+        width: auto;
+        margin-right: 8px;
+    }
+
+    .btn {
+        width: 100%;
+        margin-top: 20px;
+        padding: 14px;
+        background-color: #1e40af;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: #1d4ed8;
+    }
+
+    /* Confirmation message */
+    .success {
+        display: none;
+        background: rgba(255,255,255,0.05);
+        padding: 30px;
+        border-radius: 10px;
+        text-align: left;
+    }
+
+    .success h2 {
+        color: #60a5fa;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .success p {
+        font-size: 15px;
+        line-height: 1.7;
+        color: #e2e8f0;
+    }
+
+    .success .back {
+        display: inline-block;
+        margin-top: 20px;
+        color: #cbd5e1;
+        text-decoration: none;
+        font-size: 14px;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- Home arrow -->
+<a href="index.html" class="home-arrow">←</a>
+
+<div class="container">
+    <h1>Admin Request</h1>
+    <p>Fill the form below to request admin access for <strong>KONNECT Cruise</strong>.</p>
+
+    <form id="adminForm">
+        
+        <label>Full Name</label>
+        <input type="text" name="name" id="name" required>
+
+        <label>WhatsApp Number</label>
+        <input type="text" name="whatsapp" id="whatsapp" required>
+
+        <label>Age</label>
+        <input type="number" name="age" id="age" required>
+
+        <label>Country</label>
+        <input type="text" name="country" id="country" required>
+
+        <label>Why should you be an admin?</label>
+        <textarea name="reason" id="reason" required></textarea>
+
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" id="agree" required>
+                I agree to the 
+                <a href="terms.html" style="color:#60a5fa;">admin terms and conditions</a>.
+            </label>
+        </div>
+
+        <button type="submit" class="btn">Submit Request</button>
+    </form>
+
+    <!-- Success message -->
+    <div class="success" id="successBox">
+        <h2>Admin Request Submitted</h2>
+        <p>
+            Thank you for submitting your admin request for <strong>KONNECT Cruise</strong>.<br>
+            Your request has been received and will be reviewed by our team.<br><br>
+            The group is managed by <strong>emmyventures</strong>, and all requests are carefully evaluated to ensure active and positive contributors join the admin team.<br>
+            You will be contacted via WhatsApp regarding the status of your request.<br><br>
+            We appreciate your interest in helping grow the community and maintaining the high-quality vibes of KONNECT Cruise.
+        </p>
+        <a href="index.html" class="back">← Return to homepage</a>
+    </div>
+</div>
+
+<script>
+const form = document.getElementById("adminForm");
+const successBox = document.getElementById("successBox");
+
+const fields = ["name", "whatsapp", "age", "country", "reason"];
+
+// Restore saved data
+window.onload = function () {
+    fields.forEach(id => {
+        const saved = localStorage.getItem(id);
+        if (saved) document.getElementById(id).value = saved;
+    });
+};
+
+// Save while typing
+fields.forEach(id => {
+    document.getElementById(id).addEventListener("input", function () {
+        localStorage.setItem(id, this.value);
+    });
+});
+
+// Submit with Formspree
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const data = new FormData(form);
+
+    fetch("https://formspree.io/f/mkovnlvp", {
+        method: "POST",
+        body: data,
+        headers: { 'Accept': 'application/json' }
+    }).then(response => {
+        if (response.ok) {
+            form.style.display = "none";
+            successBox.style.display = "block";
+            fields.forEach(id => localStorage.removeItem(id));
+        } else {
+            alert("There was a problem submitting your request.");
+        }
+    });
+});
+</script>
+
+</body>
+</html>
